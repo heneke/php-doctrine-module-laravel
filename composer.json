@@ -1,0 +1,39 @@
+{
+    "name": "hhit/doctrine-module-laravel",
+    "description": "Doctrine Module Laravel Integration",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "hhit/doctrine-module": "^0.1",
+        "laravel/framework": "^5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "mockery/mockery": "^0.9.5",
+        "hhit/laravel-testing": "^0.1.0"
+    },
+    "authors": [
+        {
+            "name": "Hendrik Heneke",
+            "email": "heneke@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "HHIT\\Doctrine\\Illuminate\\": "src/main/php"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HHIT\\Doctrine\\": "src/test/php"
+        }
+    },
+    "scripts": {
+        "prepare-source": [
+            "licenser run src mit --replace-existing --owners \"Hendrik Heneke\"",
+            "php-cs-fixer fix"
+        ]
+    }
+}
