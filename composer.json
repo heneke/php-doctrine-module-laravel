@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^5.6 || ^7.0",
-        "hhit/doctrine-module": "dev-master",
+        "hhit/doctrine-module": "^0.4",
         "laravel/framework": "^5.3"
     },
     "require-dev": {

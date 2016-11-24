@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f58c8c1c6d0c49c26d63ec479439ba0b",
-    "content-hash": "0da5ab415c6cffaa48b0bc7d96d06e99",
+    "hash": "77aacfe7af38909135aefc7cd93e5fee",
+    "content-hash": "dc0e6f7c5c3863d42a578ae12b41c2cd",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -827,16 +827,16 @@
         },
         {
             "name": "hhit/doctrine-module",
-            "version": "dev-master",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heneke/php-doctrine-module.git",
-                "reference": "9ad5f43daf06b574ec35ec3ba094d5da415ee001"
+                "reference": "c8418b4d97c1f4c63f345f6099bdbeddf79248de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heneke/php-doctrine-module/zipball/9ad5f43daf06b574ec35ec3ba094d5da415ee001",
-                "reference": "9ad5f43daf06b574ec35ec3ba094d5da415ee001",
+                "url": "https://api.github.com/repos/heneke/php-doctrine-module/zipball/c8418b4d97c1f4c63f345f6099bdbeddf79248de",
+                "reference": "c8418b4d97c1f4c63f345f6099bdbeddf79248de",
                 "shasum": ""
             },
             "require": {
@@ -870,7 +870,7 @@
                 }
             ],
             "description": "Doctrine Module",
-            "time": "2016-11-24 14:09:34"
+            "time": "2016-11-24 18:00:09"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4152,9 +4152,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "hhit/doctrine-module": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
