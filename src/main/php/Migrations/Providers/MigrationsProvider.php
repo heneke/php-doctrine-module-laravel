@@ -10,6 +10,7 @@ use HHIT\Doctrine\Migrations\Contracts\MigrationsConfigurationSource;
 use HHIT\Doctrine\Migrations\Contracts\MigrationsHandler;
 use HHIT\Doctrine\Migrations\MigrationsDefaultConfigurationFactory;
 use HHIT\Doctrine\Migrations\MigrationsDefaultHandler;
+use HHIT\Doctrine\ORM\Contracts\EntityManagerConfigurationSource;
 use Illuminate\Support\ServiceProvider;
 
 class MigrationsProvider extends ServiceProvider
@@ -44,6 +45,7 @@ class MigrationsProvider extends ServiceProvider
         $this->app->singleton(MigrationsConfigurationFactory::class, function () {
             return new MigrationsDefaultConfigurationFactory(
                 $this->app->make(MigrationsConfigurationSource::class),
+                $this->app->make(EntityManagerConfigurationSource::class),
                 $this->app->make(EntityManagerInterface::class)
             );
         });
