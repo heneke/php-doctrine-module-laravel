@@ -8,7 +8,7 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManagerInterface;
 use HHIT\Doctrine\DBAL\Contracts\DBALConnectionFactory;
 use HHIT\Doctrine\Illuminate\ORM\IlluminateEntityManagerConfigurationSource;
-use HHIT\Doctrine\ORM\BindEntity;
+use HHIT\Doctrine\ORM\Annotation\BindEntity;
 use HHIT\Doctrine\ORM\Contracts\EntityManagerConfigurationFactory;
 use HHIT\Doctrine\ORM\Contracts\EntityManagerConfigurationSource;
 use HHIT\Doctrine\ORM\Contracts\EntityManagerFactory;
