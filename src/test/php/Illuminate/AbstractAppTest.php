@@ -2,11 +2,14 @@
 
 namespace HHIT\Doctrine\Illuminate;
 
+use HHIT\Doctrine\App\ORM\SamplePersistenceUnit;
+use HHIT\Doctrine\Fixtures\Contracts\ORMFixtureHandler;
 use HHIT\Doctrine\Illuminate\Console\TestingDoctrineKernel;
 use HHIT\Doctrine\Illuminate\DBAL\Providers\DBALProvider;
 use HHIT\Doctrine\Illuminate\Fixtures\Providers\FixturesProvider;
 use HHIT\Doctrine\Illuminate\Migrations\Providers\MigrationsProvider;
 use HHIT\Doctrine\Illuminate\ORM\Providers\ORMProvider;
+use HHIT\Doctrine\Migrations\Contracts\MigrationsHandler;
 use HHIT\Illuminate\Testing\Application\TestingApplicationBuilder;
 
 abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
@@ -39,6 +42,12 @@ abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
 
         $this->app = $builder->build(TestingDoctrineKernel::class);
         $this->app->bootstrap();
+
+        $migrationsHandler = $this->app->make(MigrationsHandler::class);
+        $migrationsHandler->migrateToLatest();
+
+        $fixtureHandler = $this->app->make(ORMFixtureHandler::class);
+        $fixtureHandler->load(__DIR__ . '/../../fixtures');
     }
 
     protected function isProductionEnv()
@@ -57,7 +66,13 @@ abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
 
     private function getMigrationsConfiguration()
     {
-        return [];
+        return [
+            'column' => 'version',
+            'table' => 'doctrine_migrations_version',
+            'namespace' => 'Some\Name\Space',
+            'directory' => __DIR__ . '/../../migrations',
+            'platform_dependent' => true
+        ];
     }
 
     private function getOrmConfiguration()
@@ -65,7 +80,7 @@ abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
         return [
             'driver' => 'annotation',
             'units' => [
-
+                SamplePersistenceUnit::class
             ]
         ];
     }

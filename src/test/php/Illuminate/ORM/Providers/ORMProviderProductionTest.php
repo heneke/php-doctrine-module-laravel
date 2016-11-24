@@ -2,6 +2,10 @@
 
 namespace HHIT\Doctrine\Illuminate\ORM\Providers;
 
+use Doctrine\Common\Cache\Cache;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
+use HHIT\Doctrine\App\ORM\Entity\SampleEntity;
 use HHIT\Doctrine\Illuminate\AbstractAppTest;
 
 class ORMProviderProductionTest extends AbstractAppTest
@@ -17,10 +21,6 @@ class ORMProviderProductionTest extends AbstractAppTest
      */
     public function provider()
     {
-        $path = storage_path('doctrine/cache');
-        if (file_exists($path)) {
-            rmdir($path);
-        }
         $provider = $this->app->getProvider(ORMProvider::class);
         $this->assertNotNull($provider, ORMProvider::class . ' not found');
         foreach ($provider->provides() as $abstract) {
