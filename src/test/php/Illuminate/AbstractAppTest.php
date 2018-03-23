@@ -33,8 +33,6 @@ use Orchestra\Testbench\TestCase;
 
 abstract class AbstractAppTest extends TestCase
 {
-
-
     public function setUp()
     {
         parent::setUp();

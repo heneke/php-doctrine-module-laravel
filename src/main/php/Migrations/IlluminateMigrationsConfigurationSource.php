@@ -33,7 +33,6 @@ use Illuminate\Config\Repository;
 
 class IlluminateMigrationsConfigurationSource extends ArrayConfigurationSource implements MigrationsConfigurationSource
 {
-
     use MigrationsArrayConfiguration;
 
     public function __construct(Repository $repository)

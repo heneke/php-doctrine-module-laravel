@@ -38,12 +38,10 @@ use HHIT\Doctrine\Migrations\MigrationsDefaultHandler;
 use HHIT\Doctrine\ORM\Contracts\EntityManagerConfigurationSource;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class MigrationsProvider extends ServiceProvider
 {
-
     protected $defer = true;
 
     public function provides()

@@ -37,7 +37,6 @@ use Illuminate\Foundation\Bootstrap\SetRequestForConsole;
 
 class TestingDoctrineKernel extends DoctrineKernel
 {
-
     protected $bootstrappers = [
         DetectEnvironment::class,
         WithTestingConfiguration::class,
@@ -48,6 +47,4 @@ class TestingDoctrineKernel extends DoctrineKernel
         RegisterProviders::class,
         BootProviders::class,
     ];
-
-
 }

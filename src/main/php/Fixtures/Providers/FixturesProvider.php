@@ -33,7 +33,6 @@ use Illuminate\Support\ServiceProvider;
 
 class FixturesProvider extends ServiceProvider
 {
-
     protected $defer = true;
 
     public function provides()
