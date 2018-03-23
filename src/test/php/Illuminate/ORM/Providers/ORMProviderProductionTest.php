@@ -30,8 +30,15 @@ use HHIT\Doctrine\Illuminate\AbstractAppTest;
 
 class ORMProviderProductionTest extends AbstractAppTest
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->markTestSkipped();
+    }
 
-    // ignore
+    /**
+     * @test
+     */
     public function provider()
     {
         $provider = $this->app->getProvider(ORMProvider::class);

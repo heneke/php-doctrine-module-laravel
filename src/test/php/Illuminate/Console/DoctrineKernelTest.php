@@ -31,8 +31,15 @@ use Illuminate\Contracts\Console\Kernel;
 
 class DoctrineKernelTest extends AbstractAppTest
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->markTestSkipped();
+    }
 
-    // ignore
+    /**
+     * @test
+     */
     public function consoleKernel()
     {
         /**
