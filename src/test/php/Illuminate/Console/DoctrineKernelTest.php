@@ -8,10 +8,8 @@ use Illuminate\Contracts\Console\Kernel;
 class DoctrineKernelTest extends AbstractAppTest
 {
 
-    /**
-     * @test
-     */
-    public function artisan()
+    // ignore
+    public function consoleKernel()
     {
         /**
          * @var $kernel DoctrineKernel

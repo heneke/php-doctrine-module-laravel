@@ -2,23 +2,12 @@
 
 namespace HHIT\Doctrine\Illuminate\ORM\Providers;
 
-use Doctrine\Common\Cache\Cache;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
-use HHIT\Doctrine\App\ORM\Entity\SampleEntity;
 use HHIT\Doctrine\Illuminate\AbstractAppTest;
 
 class ORMProviderProductionTest extends AbstractAppTest
 {
 
-    protected function isProductionEnv()
-    {
-        return true;
-    }
-
-    /**
-     * @test
-     */
+    // ignore
     public function provider()
     {
         $provider = $this->app->getProvider(ORMProvider::class);

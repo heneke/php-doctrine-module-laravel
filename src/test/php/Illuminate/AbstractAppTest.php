@@ -4,45 +4,16 @@ namespace HHIT\Doctrine\Illuminate;
 
 use HHIT\Doctrine\App\ORM\SamplePersistenceUnit;
 use HHIT\Doctrine\Fixtures\Contracts\ORMFixtureHandler;
-use HHIT\Doctrine\Illuminate\Console\TestingDoctrineKernel;
-use HHIT\Doctrine\Illuminate\DBAL\Providers\DBALProvider;
-use HHIT\Doctrine\Illuminate\Fixtures\Providers\FixturesProvider;
-use HHIT\Doctrine\Illuminate\Migrations\Providers\MigrationsProvider;
-use HHIT\Doctrine\Illuminate\ORM\Providers\ORMProvider;
 use HHIT\Doctrine\Migrations\Contracts\MigrationsHandler;
-use HHIT\Illuminate\Testing\Application\TestingApplicationBuilder;
+use Orchestra\Testbench\TestCase;
 
-abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractAppTest extends TestCase
 {
-    /**
-     * @var Application
-     */
-    protected $app;
 
-    /**
-     * @before
-     */
-    public function before()
+
+    public function setUp()
     {
-        $builder = new TestingApplicationBuilder();
-        $builder->getConfiguration()
-            ->addProvider(DBALProvider::class)
-            ->addProvider(ORMProvider::class)
-            ->addProvider(MigrationsProvider::class)
-            ->addProvider(FixturesProvider::class)
-            ->set('dbal', $this->getDbalConfiguration())
-            ->set('migrations', $this->getMigrationsConfiguration())
-            ->set('orm', $this->getOrmConfiguration());
-
-        if($this->isProductionEnv()) {
-            $items = $builder->getConfiguration()->getItems('app');
-            $items['env'] = 'production';
-            $builder->getConfiguration()->set('app', $items);
-        }
-
-        $this->app = $builder->build(TestingDoctrineKernel::class);
-        $this->app->bootstrap();
-
+        parent::setUp();
         $migrationsHandler = $this->app->make(MigrationsHandler::class);
         $migrationsHandler->migrateToLatest();
 
@@ -50,9 +21,37 @@ abstract class AbstractAppTest extends \PHPUnit_Framework_TestCase
         $fixtureHandler->load(__DIR__ . '/../../fixtures');
     }
 
-    protected function isProductionEnv()
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
+    /*
+    protected function resolveApplicationConsoleKernel($app)
     {
-        return false;
+        $app->singleton('Illuminate\Contracts\Console\Kernel', 'HHIT\Doctrine\Illuminate\Console\DoctrineKernel');
+    }
+       */
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return array
+     */
+    protected function getPackageProviders($app)
+    {
+        return [
+            'HHIT\Doctrine\Illuminate\DBAL\Providers\DBALProvider',
+            'HHIT\Doctrine\Illuminate\Fixtures\Providers\FixturesProvider',
+            'HHIT\Doctrine\Illuminate\Migrations\Providers\MigrationsProvider',
+            'HHIT\Doctrine\Illuminate\ORM\Providers\ORMProvider'
+        ];
+    }
+
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('dbal', $this->getDbalConfiguration());
+        $app['config']->set('migrations', $this->getMigrationsConfiguration());
+        $app['config']->set('orm', $this->getOrmConfiguration());
     }
 
     private function getDbalConfiguration()

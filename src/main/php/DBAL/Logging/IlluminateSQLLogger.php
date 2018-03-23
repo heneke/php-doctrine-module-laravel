@@ -3,7 +3,7 @@
 namespace HHIT\Doctrine\Illuminate\DBAL\Logging;
 
 use Doctrine\DBAL\Logging\SQLLogger;
-use Illuminate\Contracts\Logging\Log;
+use Psr\Log\LoggerInterface;
 
 class IlluminateSQLLogger implements SQLLogger
 {
@@ -17,7 +17,7 @@ class IlluminateSQLLogger implements SQLLogger
      */
     private $level;
 
-    public function __construct(Log $log, $level = 'debug')
+    public function __construct(LoggerInterface $log, $level = 'debug')
     {
         $this->log = $log;
         $this->level = $level;

@@ -2,10 +2,11 @@
 
 namespace HHIT\Doctrine\Illuminate\DBAL\Logging;
 
-use Illuminate\Contracts\Logging\Log;
+use Psr\Log\LoggerInterface;
 use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
 
-class IlluminateSQLLoggerTest extends \PHPUnit_Framework_TestCase
+class IlluminateSQLLoggerTest extends TestCase
 {
     /**
      * @var MockInterface
@@ -22,7 +23,7 @@ class IlluminateSQLLoggerTest extends \PHPUnit_Framework_TestCase
      */
     public function before()
     {
-        $this->log = \Mockery::mock(Log::class);
+        $this->log = \Mockery::mock(LoggerInterface::class);
         $this->sqlLogger = new IlluminateSQLLogger($this->log);
     }
 
@@ -39,6 +40,7 @@ class IlluminateSQLLoggerTest extends \PHPUnit_Framework_TestCase
      */
     public function log()
     {
+        $this->assertNotNull($this->sqlLogger);
         $this->log->shouldReceive('debug')->once();
         $this->sqlLogger->startQuery('TEST');
         $this->sqlLogger->stopQuery();
